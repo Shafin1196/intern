@@ -2,29 +2,35 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intern/auth_screen/create_screen.dart';
 
-class DetailPage2 extends ConsumerStatefulWidget{
+class DetailPage2 extends ConsumerStatefulWidget {
   const DetailPage2({super.key});
 
   @override
   ConsumerState<DetailPage2> createState() {
     return _detailPage2State();
   }
-
 }
-class _detailPage2State extends ConsumerState<DetailPage2>{
-  final _formKey=GlobalKey<FormState>();
-  final _reciverController=TextEditingController();
-  final _numberController=TextEditingController();
-  final _additionalController=TextEditingController();
-  final _weightController=TextEditingController();
-  final _parcelValueController=TextEditingController();
-  bool _isbike=true;
-  bool _iscar=false;
+
+class _detailPage2State extends ConsumerState<DetailPage2> {
+  final _formKey = GlobalKey<FormState>();
+  final _reciverController = TextEditingController();
+  final _numberController = TextEditingController();
+  final _additionalController = TextEditingController();
+  double _weightControllerStart = 0;
+  double _weightControllerEnd = 5.0;
+  final _parcelValueController = TextEditingController();
+  bool _isbike = true;
+  bool _iscar = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: SafeArea(child: Text("Parcel Details", style: TextStyle(color: Colors.black,fontSize: 18,fontWeight: FontWeight.bold),)),
+        title: SafeArea(
+            child: Text(
+          "Parcel Details",
+          style: TextStyle(
+              color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold),
+        )),
         centerTitle: true,
         elevation: 2,
         shadowColor: Colors.grey.shade100,
@@ -37,45 +43,160 @@ class _detailPage2State extends ConsumerState<DetailPage2>{
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(10.0),
+          padding: const EdgeInsets.all(16.0),
           child: Form(
             key: _formKey,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 text("Receivers Name"),
-                SizedBox(height: 10,),
                 textFormField(
-                  controller: _reciverController, 
-                  hintText: "Enter Receivers Name", 
-                  validator: (value){
-                    if(value==null || value.isEmpty){
+                  controller: _reciverController,
+                  hintText: "Enter Receivers Name",
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
                       return "Please enter Receivers Name";
                     }
                     return null;
                   },
-                  ),
-                SizedBox(height: 20,),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
                 text("Contact Number"),
-                SizedBox(height: 10,),
                 textFormField(
                   controller: _numberController,
                   hintText: "Enter Contact Number",
-                  validator: (value){
-                    if(value==null || value.isEmpty){
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
                       return "Please enter Contact Number";
                     }
                     return null;
                   },
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                text("Additional Instructions"),
+                textFormField(
+                  controller: _additionalController,
+                  hintText: "Give Additional Instructions",
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return "Please enter Additional Instructions";
+                    }
+                    return null;
+                  },
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                text("Parcel Type"),
+                TextFormField(
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderSide:
+                          BorderSide(color: Colors.grey.shade500, width: 1),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide:
+                          BorderSide(color: Colors.grey.shade500, width: 1),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide:
+                          BorderSide(color: Colors.grey.shade500, width: 1),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    suffixIcon: IconButton(
+                        onPressed: () {
+                          showModalBottomSheet(
+                              context: context,
+                              builder: (ctx) {
+                                return SingleChildScrollView();
+                              });
+                        },
+                        icon: Icon(Icons.arrow_drop_down_circle_outlined)),
                   ),
-                SizedBox(height: 20,),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return "Please enter Parcel type";
+                    }
+                    return null;
+                  },
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                text("Parcel Value"),
+                textFormField(
+                  controller: _parcelValueController,
+                  hintText: "Enter Parcel Value",
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return "Please enter Parcel Value";
+                    }
+                    return null;
+                  },
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                text("Parcel Weight"),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "0kg - 5kg",
+                      style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.red),
+                    ),
+                  ],
+                ),
+                SliderTheme(
+                  data: SliderTheme.of(context).copyWith(
+                    activeTrackColor: Colors.black,
+                    inactiveTrackColor: Colors.grey[300],
+                    trackHeight: 8,
+                    thumbColor: Colors.green, // set to red for red dots
+                    thumbShape: RoundSliderThumbShape(enabledThumbRadius: 8),
+                    overlayColor: Colors.green.withAlpha(32),
+                  ),
+                  child: RangeSlider(
+                    values: RangeValues(
+                        _weightControllerStart, _weightControllerEnd),
+                    min: 0,
+                    max: 5,
+                    onChanged: (values) {
+                      setState(() {
+                        _weightControllerStart = values.start;
+                        _weightControllerEnd = values.end;
+                      });
+                    },
+                  ),
+                ),
+              const SizedBox(height: 10,),
+              text("Select Ride"),
+              const SizedBox(height: 10,),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Container(
+                    height: 80,
+                    width: 80,
+                    decoration: ,
+                  ),
+                ],
+              )
               ],
             ),
           ),
         ),
       ),
-      
     );
   }
-
 }
