@@ -185,13 +185,62 @@ class _detailPage2State extends ConsumerState<DetailPage2> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Container(
-                    height: 80,
-                    width: 80,
-                    decoration: ,
+                  InkWell(
+                    onTap: () {
+                      setState(() {
+                        _isbike = true;
+                        _iscar = false;
+                      });
+                    },
+                    child: Container(
+                      height: 100,
+                      width: 100,
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: _isbike ? Colors.green : Colors.grey,
+                          width: 2,
+                        ),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Image.asset("assets/images/bike.png", height: 60, width: 60,),
+                          Text("Bike", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold,color: Colors.black),)
+                        ],
+                      ),
+                    ),
+                  ),
+                  SizedBox(width: 20,),
+                  InkWell(
+                    onTap: () {
+                      setState(() {
+                        _isbike = false;
+                        _iscar = true;
+                      });
+                    },
+                    child: Container(
+                      height: 100,
+                      width: 100,
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: _iscar ? Colors.green : Colors.grey,
+                          width: 2,
+                        ),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Image.asset("assets/images/car.png", height: 60, width: 60,),
+                          Text("Car", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold,color: Colors.black),)
+                        ],
+                      ),
+                    ),
                   ),
                 ],
-              )
+              ),
+              
               ],
             ),
           ),
