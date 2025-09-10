@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intern/auth_screen/create_screen.dart';
+import 'package:intern/homeScreens/summery.dart';
 
 class DetailPage2 extends ConsumerStatefulWidget {
   const DetailPage2({super.key});
@@ -240,7 +241,30 @@ class _detailPage2State extends ConsumerState<DetailPage2> {
                   ),
                 ],
               ),
-              
+              const SizedBox(
+            height: 20,
+          ),
+          SizedBox(
+            width: MediaQuery.of(context).size.width - 40,
+            height: 47,
+            child: ElevatedButton(
+              onPressed: () {
+                
+                Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => Summery()),
+                );
+              },
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.green.shade700,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(25))),
+              child: Text(
+                      "Continue",
+                      style: TextStyle(fontSize: 20, color: Colors.white),
+                    ),
+            ),
+          ),
+
               ],
             ),
           ),
