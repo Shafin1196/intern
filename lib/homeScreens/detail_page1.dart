@@ -19,9 +19,13 @@ class _detailPage1State extends ConsumerState<DetailPage1>{
       appBar: AppBar(
         title: SafeArea(child: Text("Choose location", style: TextStyle(color: Colors.black,fontSize: 18,fontWeight: FontWeight.bold),)),
         centerTitle: true,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios, color: Colors.black),
-          onPressed: () => Navigator.of(context).pop(),
+        elevation: 2,
+        shadowColor: Colors.grey.shade100,
+        leading: SafeArea(
+          child: IconButton(
+            icon: Icon(Icons.arrow_back_ios, color: Colors.black),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
         ),
       ),
       body: ChooseLocation(),

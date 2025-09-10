@@ -1,8 +1,9 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intern/homeScreens/detail_page1.dart';
 import 'package:intern/homeWidgets/slideBanner.dart';
+import 'package:intern/providers/orderHistory.dart';
+import 'package:intl/intl.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
@@ -11,7 +12,6 @@ class HomeScreen extends ConsumerStatefulWidget {
 }
 
 class _HomeScreenState extends ConsumerState<HomeScreen> {
-  int _currentIndex = 0;
   String address = "Null";
   @override
   void initState() {
@@ -175,7 +175,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                     child: OutlinedButton(
                       onPressed: () {
                         Navigator.of(context).push(
-                          MaterialPageRoute(builder: (context) => DetailPage1( )),
+                          MaterialPageRoute(
+                              builder: (context) => DetailPage1()),
                         );
                       },
                       style: OutlinedButton.styleFrom(
@@ -214,7 +215,63 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                       ),
                       //list of recent orders here
                     ],
-                  )
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Consumer(builder: (context, ref, child) {
+                    final orderAsync = ref.watch(orderHistoryProvider);
+                    return orderAsync.when(
+                      data: (orderHistory) => ListView.builder(
+                        itemCount: orderHistory.data.orders.length,
+                        itemBuilder: (context, index) {
+                          final order = orderHistory.data.orders[index];
+                          final delivered = orderHistory.data.orders[index]
+                              .deliveryInfo.timestamps.deliveredAt;
+                          final dateTime = DateTime.parse(delivered);
+                          final formatted = DateFormat('d MMMM, yyyy hh:mm a')
+                              .format(dateTime);
+                          return SizedBox(
+                            height: 100,
+                            width: MediaQuery.of(context).size.width-50,
+                            child: Card(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12),
+                                side: BorderSide(color: Colors.grey, width: 1), 
+                              ),
+                              
+                              child: Padding(
+                                padding: const EdgeInsets.all(12.0),
+                                child: ListTile(
+                                  title: Text(order.receiversName),
+                                  subtitle: Text(order.destinationAddress),
+                                  trailing: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Icon(Icons.calendar_today,
+                                          size: 16, color: Colors.grey),
+                                      Text(formatted,
+                                          style: TextStyle(
+                                              fontSize: 12, color: Colors.grey)),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                      loading: () => SizedBox(
+                        width: 20,
+                        height: 20,
+                        child: Center(
+                            child: CircularProgressIndicator(
+                          color: Colors.green,
+                        )),
+                      ),
+                      error: (err, stack) => Text('Error: $err'),
+                    );
+                  }),
                 ],
               ),
             ),
@@ -229,7 +286,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               // Selected item
               Container(
                 height: 50,
-                width: MediaQuery.of( context).size.width * 0.3,
+                width: MediaQuery.of(context).size.width * 0.3,
                 padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                 decoration: BoxDecoration(
                   color: Colors.green,
@@ -237,22 +294,47 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 ),
                 child: Row(
                   children: [
-                    Icon(Icons.home, color: Colors.white,size: 30,),
+                    Icon(
+                      Icons.home,
+                      color: Colors.white,
+                      size: 30,
+                    ),
                     SizedBox(width: 6),
                     Text("Home", style: TextStyle(color: Colors.white)),
                   ],
                 ),
               ),
               // Unselected items
-              IconButton(onPressed: (){
-                //fuction will assign later
-              }, icon: Icon(Icons.description_outlined, color: Colors.grey,size: 30,),),
-              IconButton(onPressed: (){
-                //fuction will assign later
-              }, icon: Icon(Icons.description_outlined, color: Colors.grey,size: 30,),),
-              IconButton(onPressed: (){
-                //fuction will assign later
-              }, icon: Icon(Icons.person_outline, color: Colors.grey,size: 30,),),
+              IconButton(
+                onPressed: () {
+                  //fuction will assign later
+                },
+                icon: Icon(
+                  Icons.description_outlined,
+                  color: Colors.grey,
+                  size: 30,
+                ),
+              ),
+              IconButton(
+                onPressed: () {
+                  //fuction will assign later
+                },
+                icon: Icon(
+                  Icons.description_outlined,
+                  color: Colors.grey,
+                  size: 30,
+                ),
+              ),
+              IconButton(
+                onPressed: () {
+                  //fuction will assign later
+                },
+                icon: Icon(
+                  Icons.person_outline,
+                  color: Colors.grey,
+                  size: 30,
+                ),
+              ),
             ],
           ),
         ));

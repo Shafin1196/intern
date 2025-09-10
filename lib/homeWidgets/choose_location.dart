@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intern/homeScreens/detail_page2.dart';
 import 'package:latlong2/latlong.dart';
 
 class ChooseLocation extends ConsumerStatefulWidget {
@@ -36,8 +37,8 @@ class _ChooseLocationState extends ConsumerState<ChooseLocation> {
                 options: MapOptions(
                     initialCenter: LatLng(51.5, -0.09),
                     initialZoom: 1,
-                    interactionOptions: InteractionOptions(
-                        flags: InteractiveFlag.all)),
+                    interactionOptions:
+                        InteractionOptions(flags: InteractiveFlag.all)),
                 children: [
                   OpenStreetMapTileLayer,
                   MarkerLayer(markers: [
@@ -45,33 +46,36 @@ class _ChooseLocationState extends ConsumerState<ChooseLocation> {
                       width: 80.0,
                       height: 80.0,
                       point: LatLng(51.5, -0.09),
-                      child: Icon(Icons.location_on, color: Colors.red, size: 40),
+                      child:
+                          Icon(Icons.location_on, color: Colors.red, size: 40),
                     ),
                     Marker(
                       width: 80.0,
                       height: 80.0,
                       point: LatLng(52.5, -0.09),
-                      child: Icon(Icons.location_on, color: Colors.red, size: 40),
+                      child:
+                          Icon(Icons.location_on, color: Colors.red, size: 40),
                     ),
                   ]),
-                  PolylineLayer(
-      polylines: [
-        Polyline(
-          points: [
-            LatLng(51.5, -0.09),
-            LatLng(52.5, -0.09),
-          ],
-          color: Colors.blue,
-          strokeWidth: 4,
-        ),
-      ],
-    ),
-                  
+                  // PolylineLayer(
+                  //   polylines: [
+                  //     Polyline(
+                  //       points: [
+                  //         LatLng(51.5, -0.09),
+                  //         LatLng(52.5, -0.09),
+                  //       ],
+                  //       color: Colors.blue,
+                  //       strokeWidth: 4,
+                  //     ),
+                  //   ],
+                  // ),
                 ],
               ),
             ),
           ),
-          const SizedBox(height: 20,),
+          const SizedBox(
+            height: 20,
+          ),
           SizedBox(
             width: MediaQuery.of(context).size.width - 40,
             height: 47,
@@ -83,6 +87,9 @@ class _ChooseLocationState extends ConsumerState<ChooseLocation> {
                 setState(() {
                   isLoading = false;
                 });
+                Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => DetailPage2()),
+                );
               },
               style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.green.shade700,
@@ -93,7 +100,7 @@ class _ChooseLocationState extends ConsumerState<ChooseLocation> {
                       valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
                     )
                   : Text(
-                      "Continue",
+                      "Confirm location",
                       style: TextStyle(fontSize: 20, color: Colors.white),
                     ),
             ),
