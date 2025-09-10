@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intern/auth_screen/create_screen.dart';
 import 'package:intern/homeScreens/summery.dart';
+import 'package:intern/homeWidgets/parcel_type_overlay.dart';
 
 class DetailPage2 extends ConsumerStatefulWidget {
   const DetailPage2({super.key});
@@ -113,10 +114,12 @@ class _detailPage2State extends ConsumerState<DetailPage2> {
                     ),
                     suffixIcon: IconButton(
                         onPressed: () {
+                          
                           showModalBottomSheet(
                               context: context,
+                              isScrollControlled: true,
                               builder: (ctx) {
-                                return SingleChildScrollView();
+                                return ParcelTypeOverlay();
                               });
                         },
                         icon: Icon(Icons.arrow_drop_down_circle_outlined)),
