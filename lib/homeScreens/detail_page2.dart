@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intern/auth_screen/create_screen.dart';
 import 'package:intern/homeScreens/summery.dart';
 import 'package:intern/homeWidgets/parcel_type_overlay.dart';
+import 'package:intern/providers/parcel_providers.dart';
 
 class DetailPage2 extends ConsumerStatefulWidget {
   const DetailPage2({super.key});
@@ -96,6 +97,8 @@ class _detailPage2State extends ConsumerState<DetailPage2> {
                 ),
                 text("Parcel Type"),
                 TextFormField(
+                  controller: TextEditingController(
+                      text: ref.watch(parcelProvider)?.parcelType ?? ''),
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
                       borderSide:
@@ -201,7 +204,7 @@ class _detailPage2State extends ConsumerState<DetailPage2> {
                       width: 100,
                       decoration: BoxDecoration(
                         border: Border.all(
-                          color: _isbike ? Colors.green : Colors.grey,
+                          color: _isbike ? Colors.green.shade800 : Colors.grey.shade300,
                           width: 2,
                         ),
                         borderRadius: BorderRadius.circular(12),
@@ -228,7 +231,7 @@ class _detailPage2State extends ConsumerState<DetailPage2> {
                       width: 100,
                       decoration: BoxDecoration(
                         border: Border.all(
-                          color: _iscar ? Colors.green : Colors.grey,
+                          color: _iscar ? Colors.green.shade800 : Colors.grey.shade300,
                           width: 2,
                         ),
                         borderRadius: BorderRadius.circular(12),

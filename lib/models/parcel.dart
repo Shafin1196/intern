@@ -50,7 +50,7 @@ class Parcel {
     required this.maxParcelWeight,
     required this.ride,
   });
-
+  
   factory Parcel.fromJson(Map<String, dynamic> json) {
     return Parcel(
       pickupLocation: LocationPoint.fromJson(json['pickupLocation']),

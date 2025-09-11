@@ -35,34 +35,42 @@ class ParcelColumn extends ConsumerWidget{
         buttonTile(title: 'Homemade food ', subtitle: 'Home-cooked meals', icon: Icons.restaurant_menu_outlined, onTap: () {
           //assign later
           ref.watch(parcelProvider.notifier).setParcelType('Homemade food');
+          Navigator.pop(context);
         }),
         buttonTile(title: 'Clothes', subtitle: 'Folded or packed securely', icon: Icons.checkroom_outlined, onTap: () {
           //assign later
           ref.watch(parcelProvider.notifier).setParcelType('Clothes');
+          Navigator.pop(context);
         }),
         buttonTile(title: 'Documents ', subtitle: 'No passport or bank cheques', icon: Icons.document_scanner_outlined, onTap: () {
           //assign later
           ref.watch(parcelProvider.notifier).setParcelType('Documents');
+          Navigator.pop(context);
         }),
         buttonTile(title: 'Gifts', subtitle: 'Flowers,cards,chocolates and others', icon: Icons.card_giftcard_outlined, onTap: () {
           //assign later
           ref.watch(parcelProvider.notifier).setParcelType('Gifts');
+          Navigator.pop(context);
         }),
         buttonTile(title: 'Cosmetics', subtitle: 'Makeup, skincare, or hygiene products.', icon: Icons.shopify_outlined, onTap: () {
           //assign later
           ref.watch(parcelProvider.notifier).setParcelType('Cosmetics');
+          Navigator.pop(context);
         }),
         buttonTile(title: 'Medicine', subtitle: 'Prescription or over the counter medicines', icon: Icons.medical_services_outlined, onTap: () {
           //assign later
           ref.watch(parcelProvider.notifier).setParcelType('Medicine');
+          Navigator.pop(context);
         }),
         buttonTile(title: 'Accessories ', subtitle: 'Watches, jewelry, bags, shoes etc,', icon: Icons.shopping_bag_outlined, onTap: () {
           //assign later
           ref.watch(parcelProvider.notifier).setParcelType('Accessories');
+          Navigator.pop(context);
         }),
         buttonTile(title: 'Electronics', subtitle: 'Stationery, small tools, or household items', icon: Icons.electrical_services_outlined, onTap: () {
           //assign later
           ref.watch(parcelProvider.notifier).setParcelType('Electronics');
+          Navigator.pop(context);
         }),
         
         
