@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intern/homeScreens/detail_page2.dart';
-import 'package:intern/models/parcel.dart';
-import 'package:intern/providers/parcel_providers.dart';
 import 'package:latlong2/latlong.dart';
 
 class ChooseLocation extends ConsumerStatefulWidget {
@@ -89,8 +87,7 @@ class _ChooseLocationState extends ConsumerState<ChooseLocation> {
                 setState(() {
                   isLoading = false;
                 });
-                ref.read(parcelProvider.notifier).setParcel(
-                  Parcel.empty());
+                
                 Navigator.of(context).push(
                   MaterialPageRoute(builder: (context) => DetailPage2()),
                 );

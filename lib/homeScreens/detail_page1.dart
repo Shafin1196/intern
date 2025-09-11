@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intern/homeWidgets/choose_location.dart';
+import 'package:intern/providers/parcel_providers.dart';
 
 class DetailPage1 extends ConsumerStatefulWidget{
   const DetailPage1({super.key});
@@ -24,7 +25,9 @@ class _detailPage1State extends ConsumerState<DetailPage1>{
         leading: SafeArea(
           child: IconButton(
             icon: Icon(Icons.arrow_back_ios, color: Colors.black),
-            onPressed: () => Navigator.of(context).pop(),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
           ),
         ),
       ),

@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intern/homeScreens/detail_page1.dart';
 import 'package:intern/homeWidgets/slideBanner.dart';
+import 'package:intern/models/parcel.dart';
 import 'package:intern/providers/orderHistory.dart';
+import 'package:intern/providers/parcel_providers.dart';
 import 'package:intl/intl.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
@@ -174,6 +176,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                     width: MediaQuery.of(context).size.width - 50,
                     child: OutlinedButton(
                       onPressed: () {
+                        ref
+                            .read(parcelProvider.notifier)
+                            .setParcel(Parcel.empty());
                         Navigator.of(context).push(
                           MaterialPageRoute(
                               builder: (context) => DetailPage1()),
@@ -213,7 +218,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                               color: Colors.black,
                             )),
                       ),
-                      //list of recent orders here
                     ],
                   ),
                   const SizedBox(
@@ -233,13 +237,12 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                               .format(dateTime);
                           return SizedBox(
                             height: 100,
-                            width: MediaQuery.of(context).size.width-50,
+                            width: MediaQuery.of(context).size.width - 50,
                             child: Card(
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(12),
-                                side: BorderSide(color: Colors.grey, width: 1), 
+                                side: BorderSide(color: Colors.grey, width: 1),
                               ),
-                              
                               child: Padding(
                                 padding: const EdgeInsets.all(12.0),
                                 child: ListTile(
@@ -252,7 +255,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                                           size: 16, color: Colors.grey),
                                       Text(formatted,
                                           style: TextStyle(
-                                              fontSize: 12, color: Colors.grey)),
+                                              fontSize: 12,
+                                              color: Colors.grey)),
                                     ],
                                   ),
                                 ),
