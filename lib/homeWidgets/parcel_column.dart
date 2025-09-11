@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intern/providers/parcel_providers.dart';
 Widget buttonTile({required String title, required String subtitle, required IconData icon, required VoidCallback onTap}){
   return InkWell(
           onTap: onTap,
@@ -33,27 +34,35 @@ class ParcelColumn extends ConsumerWidget{
       children: [
         buttonTile(title: 'Homemade food ', subtitle: 'Home-cooked meals', icon: Icons.restaurant_menu_outlined, onTap: () {
           //assign later
+          ref.watch(parcelProvider.notifier).setParcelType('Homemade food');
         }),
         buttonTile(title: 'Clothes', subtitle: 'Folded or packed securely', icon: Icons.checkroom_outlined, onTap: () {
           //assign later
+          ref.watch(parcelProvider.notifier).setParcelType('Clothes');
         }),
         buttonTile(title: 'Documents ', subtitle: 'No passport or bank cheques', icon: Icons.document_scanner_outlined, onTap: () {
           //assign later
+          ref.watch(parcelProvider.notifier).setParcelType('Documents');
         }),
         buttonTile(title: 'Gifts', subtitle: 'Flowers,cards,chocolates and others', icon: Icons.card_giftcard_outlined, onTap: () {
           //assign later
+          ref.watch(parcelProvider.notifier).setParcelType('Gifts');
         }),
         buttonTile(title: 'Cosmetics', subtitle: 'Makeup, skincare, or hygiene products.', icon: Icons.shopify_outlined, onTap: () {
           //assign later
+          ref.watch(parcelProvider.notifier).setParcelType('Cosmetics');
         }),
         buttonTile(title: 'Medicine', subtitle: 'Prescription or over the counter medicines', icon: Icons.medical_services_outlined, onTap: () {
           //assign later
+          ref.watch(parcelProvider.notifier).setParcelType('Medicine');
         }),
         buttonTile(title: 'Accessories ', subtitle: 'Watches, jewelry, bags, shoes etc,', icon: Icons.shopping_bag_outlined, onTap: () {
           //assign later
+          ref.watch(parcelProvider.notifier).setParcelType('Accessories');
         }),
         buttonTile(title: 'Electronics', subtitle: 'Stationery, small tools, or household items', icon: Icons.electrical_services_outlined, onTap: () {
           //assign later
+          ref.watch(parcelProvider.notifier).setParcelType('Electronics');
         }),
         
         

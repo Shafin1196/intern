@@ -19,5 +19,8 @@ class ParcelNotifier extends StateNotifier<Parcel?> {
   void reset() {
     state = null;
   }
+  void setParcelType(String type) {
+    state=state?.copyWith(parcelType: type);
+  }
 }
 
