@@ -27,6 +27,21 @@ class LocationPoint {
 }
 
 class Parcel {
+  
+  factory Parcel.empty() {
+    return Parcel(
+      pickupLocation: const LocationPoint(type: '', address: '', coordinates: []),
+      destinationLocation: const LocationPoint(type: '', address: '', coordinates: []),
+      receiversName: '',
+      contact: '',
+      additionalInformation: '',
+      parcelType: '',
+      parcelValue: 0.0,
+      minParcelWeight: 0.0,
+      maxParcelWeight: 0.0,
+      ride: '',
+    );
+  }
   final LocationPoint pickupLocation;
   final LocationPoint destinationLocation;
   final String receiversName;
