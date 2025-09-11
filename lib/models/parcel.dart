@@ -112,7 +112,7 @@ class Parcel {
       receiversName: receiversName ?? this.receiversName,
       contact: contact ?? this.contact,
       additionalInformation:
-          additionalInformation ?? this.additionalInformation,
+      additionalInformation ?? this.additionalInformation,
       parcelType: parcelType ?? this.parcelType,
       parcelValue: parcelValue ?? this.parcelValue,
       minParcelWeight: minParcelWeight ?? this.minParcelWeight,

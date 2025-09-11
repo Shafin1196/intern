@@ -22,5 +22,12 @@ class ParcelNotifier extends StateNotifier<Parcel?> {
   void setParcelType(String type) {
     state=state?.copyWith(parcelType: type);
   }
+
+  //for test purpose
+  void printState(){
+    if(state!=null){
+      print(state!.toJson());
+  }
+  }
 }
 

@@ -255,7 +255,21 @@ class _detailPage2State extends ConsumerState<DetailPage2> {
             height: 47,
             child: ElevatedButton(
               onPressed: () {
-                
+                if(_formKey.currentState!.validate()){
+                  ref.read(parcelProvider.notifier).setParcel(
+                    ref.read(parcelProvider)!.copyWith(
+                      receiversName: _reciverController.text,
+                      contact: _numberController.text,
+                      additionalInformation: _additionalController.text,
+                      parcelValue: _parcelValueController.text.isEmpty ? 0.0 : double.parse(_parcelValueController.text),
+                      minParcelWeight: _weightControllerStart,
+                      maxParcelWeight: _weightControllerEnd,
+                      ride: _isbike ? "Bike" : "Car",
+                    ),
+                  );
+                }
+                // print(1);
+                // ref.read(parcelProvider.notifier).printState();
                 Navigator.of(context).push(
                   MaterialPageRoute(builder: (context) => Summery()),
                 );
