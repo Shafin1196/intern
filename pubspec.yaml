@@ -43,6 +43,7 @@ dependencies:
   flutter_map:
   latlong2: ^0.9.1
   intl: ^0.20.2
+  geocoding: ^4.0.0
   
 
 dev_dependencies:

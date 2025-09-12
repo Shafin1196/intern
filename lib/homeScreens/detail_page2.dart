@@ -268,8 +268,8 @@ class _detailPage2State extends ConsumerState<DetailPage2> {
                     ),
                   );
                 }
-                // print(1);
-                // ref.read(parcelProvider.notifier).printState();
+                print(1);
+                ref.read(parcelProvider.notifier).printState();
                 Navigator.of(context).push(
                   MaterialPageRoute(builder: (context) => Summery()),
                 );
