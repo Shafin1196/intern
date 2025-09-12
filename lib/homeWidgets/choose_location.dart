@@ -219,6 +219,15 @@ class _ChooseLocationState extends ConsumerState<ChooseLocation> {
             height: 47,
             child: ElevatedButton(
               onPressed: () {
+                if(pickUpLatLng==null || destinationLatLng==null){
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('Please select both pick up and destination locations.'),
+                      backgroundColor: Colors.red,
+                    ),
+                  );
+                  return;
+                }
                 setState(() {
                   isLoading = true;
                 });
